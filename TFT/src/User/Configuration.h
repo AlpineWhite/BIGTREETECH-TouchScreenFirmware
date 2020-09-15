@@ -46,7 +46,7 @@
  */
 #define DEFAULT_LCD_BRIGHTNESS      11  // 11: LCD_100_PERCENT - Brightness value from list
 #define DEFAULT_LCD_IDLE_BRIGHTNESS 3   // 3: LCD_10_PERCENT - Brightness value from list
-#define DEFAULT_LCD_IDLE_TIMER      0   // 0: LCD_DIM_OFF
+#define DEFAULT_LCD_IDLE_TIMER      600 // 0: LCD_DIM_OFF
 #define LCD_DIM_CUSTOM_SECONDS      600 // Custom value in seconds. Will be used if LCD_DIM_CUSTOM_SECONDS is set as idle timer.
 
 //===========================================================================
@@ -73,7 +73,7 @@
 /**
  * show banner text at the top of the TFT in Marlin Mode.
  */
-#define MARLIN_SHOW_BANNER  true //to enabled: true | to disabled: false
+#define MARLIN_SHOW_BANNER  false //to enabled: true | to disabled: false
 /**
  * Run Marlin Mode in Fullscreen
  *
@@ -105,7 +105,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 57600
 
 /**
  * Default Touch Mode Language
@@ -117,7 +117,7 @@
 /**
  * Show bootscreen when starting up
  */
-#define SHOW_BTT_BOOTSCREEN
+//#define SHOW_BTT_BOOTSCREEN
 
 /**
  * The duration and frequency for the UI feedback sound.
@@ -127,7 +127,7 @@
  * Note: Test audio output with the G-Code:
  * M300 S<frequency Hz> P<duration ms>
  */
-#define BUZZER_FREQUENCY_DURATION_MS 20 // Default 20
+#define BUZZER_FREQUENCY_DURATION_MS 0  // Default 20
 #define BUZZER_FREQUENCY_HZ 10000       // Default 10000, 20Hz to 60KHz
 #define BUZZER_STOP_LEVEL false
 
@@ -176,7 +176,7 @@
 #define PREHEAT_HOTEND   {200,   240,    230,   170,    220,   250}
 #define PREHEAT_BED      {60,    70,     90,    50,     50,    90}
 
-#define HEAT_MAX_TEMP    {275,       275,       275,       275,       275,       275,       150,    60}   //max temperature can be set
+#define HEAT_MAX_TEMP    {285,       285,       275,       275,       275,       275,       150,    60}   //max temperature can be set
 #define HEAT_SIGN_ID     {"T0:",     "T1:",     "T2:",     "T3:",     "T4:",     "T5:",     "B:",   "C:"}
 #define HEAT_DISPLAY_ID  {"T0",      "T1",      "T2",      "T3",      "T4",      "T5",      "Bed",  "Chamber"}
 #define HEAT_CMD         {"M104 T0", "M104 T1", "M104 T2", "M104 T3", "M104 T4", "M104 T5", "M140", "M141"};
@@ -217,9 +217,9 @@
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS 235
-#define Y_MAX_POS 235
-#define Z_MAX_POS 250
+#define X_MAX_POS 300
+#define Y_MAX_POS 300
+#define Z_MAX_POS 350
 
 // Specify a pause position as { X, Y, Z_raise }
 #define NOZZLE_PAUSE_RETRACT_LENGTH 15   // (mm)
@@ -243,7 +243,7 @@
  * Enable this will send "M500" after "G29" to store leveling value
  * and send "M420 S1" to enable leveling state after startup
  */
-#define AUTO_SAVE_LOAD_LEVELING_VALUE true //to enabled: true | to disabled: false
+#define AUTO_SAVE_LOAD_LEVELING_VALUE false //to enabled: true | to disabled: false
 
 /**
  * Enable Unified Bed Leveling options
@@ -322,7 +322,7 @@
 /**
  * PID autotune
  */
-#define PID_CMD             {"M303 U1 C8 E0", "M303 U1 C8 E1", "M303 U1 C8 E2", "M303 U1 C8 E3", "M303 U1 C8 E4", "M303 U1 C8 E5", "M303 U1 C8 E-1", ""};
+#define PID_CMD             {"M303 P1 E0", "M303 P1 E1", "M303 P1 E2", "M303 P1 E3", "M303 P1 E4", "M303 P1 E5", "M303 P1 E-1", ""};
 #define PID_PROCESS_TIMEOUT 900000                         // expressed in ms. E.g. 900000 corresponds to 15 minutes
 
 // LCD Encoder
@@ -373,7 +373,7 @@
 #define POWER_LOSS_ZRAISE 10
 
 // Prevent extrusion if the temperature is below set temperature
-#define PREVENT_COLD_EXTRUSION_MINTEMP 170
+#define PREVENT_COLD_EXTRUSION_MINTEMP 110
 
 /**
  * Maximum hotend temperature of automatic shut down after printing.
@@ -404,18 +404,18 @@
  */
 #define CUSTOM_0_LABEL "Disable Steppers"
 #define CUSTOM_0_GCODE "M84\n"
-#define CUSTOM_1_LABEL "Init SD Card"
-#define CUSTOM_1_GCODE "M21\n"
-#define CUSTOM_2_LABEL "Release SD Card"
-#define CUSTOM_2_GCODE "M22\n"
-#define CUSTOM_3_LABEL "Enable Leveling State"
-#define CUSTOM_3_GCODE "M420 S1\n"
+#define CUSTOM_1_LABEL "Allow Cold Extrusion"
+#define CUSTOM_1_GCODE "M302 P1\n"
+#define CUSTOM_2_LABEL "Define Whole Bed Mesh"
+#define CUSTOM_2_GCODE "M557 X0:300 Y0:257.2 S50\n"
+#define CUSTOM_3_LABEL "Perform True Bed Leveling"
+#define CUSTOM_3_GCODE "G32\n"
 #define CUSTOM_4_LABEL "Save to EEPROM"
 #define CUSTOM_4_GCODE "M500\n"
 #define CUSTOM_5_LABEL "Restore from EEPROM"
 #define CUSTOM_5_GCODE "M501\n"
-#define CUSTOM_6_LABEL "EEPROM Defaults"
-#define CUSTOM_6_GCODE "M502\n"
+#define CUSTOM_6_LABEL "Allow Free Movement"
+#define CUSTOM_6_GCODE "M564 H0\n"
 //#define CUSTOM_7_LABEL "Custom7"
 //#define CUSTOM_7_GCODE "M105\n"
 //#define CUSTOM_8_LABEL "Custom8"

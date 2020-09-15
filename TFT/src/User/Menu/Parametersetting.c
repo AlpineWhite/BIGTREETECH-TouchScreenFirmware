@@ -293,7 +293,7 @@ void menuParameterSettings(void){
       if (key_num < LISTITEM_PER_PAGE && cp < PARAMETERS_COUNT)
       {
         cur_parameter = cp;
-        mustStoreCmd("M503 S0\n");
+        mustStoreCmd("M503\n");
         infoMenu.menu[++infoMenu.cur] = menuShowParameter;
         break;
       }

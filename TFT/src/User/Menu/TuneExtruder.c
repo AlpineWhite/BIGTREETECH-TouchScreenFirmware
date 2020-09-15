@@ -231,7 +231,7 @@ void menuNewExtruderESteps(void)
   float now = measured_length = 20.0f;
   float old_esteps, new_esteps; // get the value of the E-steps
 
-  mustStoreCmd("M503 S0\n");
+  mustStoreCmd("M503\n");
   old_esteps = getParameter(P_STEPS_PER_MM, E_AXIS); // get the value of the E-steps
 
   newExtruderESteps.items[KEY_ICON_5] = itemTuneExtruderLen[curLen];

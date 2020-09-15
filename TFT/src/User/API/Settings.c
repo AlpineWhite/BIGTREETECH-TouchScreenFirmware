@@ -198,7 +198,7 @@ void setupMachine(void)
   {
     infoMachineSettings.long_filename_support = DISABLED;
   }
-  mustStoreCmd("M503 S0\n");
+  mustStoreCmd("M503\n");
 }
 
 float flashUsedPercentage(void)

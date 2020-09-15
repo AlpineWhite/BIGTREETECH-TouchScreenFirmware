@@ -6,21 +6,20 @@ PARAMETERS infoParameters;
 const u8 parameter_element_count[PARAMETERS_COUNT] = {5, 5, 5, 5, 3, 4, 3, 3, 4, 4, 1, 2, 2, 3, 5};
 
 const char *const parameter_Cmd[PARAMETERS_COUNT][STEPPER_COUNT] = {
-  {"M92 X%.2f\n",    "M92 Y%.2f\n", "M92 Z%.2f\n",  "M92 T0 E%.2f\n",  "M92 T1 E%.2f\nM503 S0\n"}, //Steps/mm
-  {"M906 X%.0f\n",  "M906 Y%.0f\n", "M906 Z%.0f\n", "M906 T0 E%.0f\n", "M906 T1 E%.0f\nM503 S0\n"}, //Current
-  {"M203 X%.0f\n",  "M203 Y%.0f\n", "M203 Z%.0f\n", "M203 T0 E%.0f\n", "M203 T1 E%.0f\nM503 S0\n"}, //MaxFeedrate
-  {"M201 X%.0f\n",  "M201 Y%.0f\n", "M201 Z%.0f\n", "M201 T0 E%.0f\n", "M201 T1 E%.0f\nM503 S0\n"}, //MaxAcceleration
+  {"M92 X%.2f\n",    "M92 Y%.2f\n",  "M92 Z%.2f\n",  "M92 T0 E%.2f\n",  "M92 T1 E%.2f\nM503\n"}, //Steps/mm
+  {"M906 X%.0f\n",  "M906 Y%.0f\n", "M906 Z%.0f\n", "M906 T0 E%.0f\n", "M906 T1 E%.0f\nM503\n"}, //Current
+  {"M203 X%.0f\n",  "M203 Y%.0f\n", "M203 Z%.0f\n", "M203 T0 E%.0f\n", "M203 T1 E%.0f\nM503\n"}, //MaxFeedrate
+  {"M201 X%.0f\n",  "M201 Y%.0f\n", "M201 Z%.0f\n", "M201 T0 E%.0f\n", "M201 T1 E%.0f\nM503\n"}, //MaxAcceleration
   {"M204 P%.0f\n",  "M204 R%.0f\n", "M204 T%.0f\n",              NULL,                       NULL}, //Acceleration
   {"M205 X%.0f\n",  "M205 Y%.0f\n", "M205 Z%.2f\n", "M205 E%.2f\n",                          NULL}, //Jerk
   {"M851 X%.2f\n",  "M851 Y%.2f\n", "M851 Z%.2f\n",              NULL,                       NULL}, //Probe offset
   {"M914 X%.0f\n",  "M914 Y%.0f\n", "M914 Z%.0f\n",              NULL,                       NULL}, //bump Sensitivity
   {"M207 S%.2f\n",  "M207 W%.2f\n", "M207 F%.2f\n",    "M207 Z%.2f\n",                       NULL}, //FW retract
   {"M208 S%.2f\n",  "M208 W%.2f\n", "M208 F%.2f\n",    "M208 R%.2f\n",                       NULL}, //FW retract recover
-  {"M209 S%.0f\nM503 S0\n", NULL,             NULL,              NULL,                       NULL}, //Set auto FW retract
-  {"M900 T0 K%.2f\n", "M900 T1 K%.2f\nM503 S0\n", NULL,          NULL,                       NULL}, //Linear Advance
-  {"M420 S%.0f\n", "M420 Z%.2f\n",            NULL,              NULL,                       NULL}, //ABL State + Z Fade
-  {"M218 T1 X%.2f\nM503 S0\n", "M218 T1 Y%.2f\nM503 S0\n", "M218 T1 Z%.2f\nM503 S0\n", NULL, NULL}, //Offset Tools
-  {"M913 X%.0f\n",  "M913 Y%.0f\n", "M913 Z%.0f\n",    "M913 E%.0f\n", "M913 T1 E%.0f\nM503 S0\n"}, //TMC Hybrid Threshold Speed
+  {"M209 S%.0f\nM503\n", NULL,             NULL,               NULL,                      NULL}, //Set auto FW retract
+  {"M572 D0 K%.2f\n", "M572 D1 K%.2f\nM503\n", NULL,          NULL,                       NULL}, //Linear Advance
+  {"M420 S%.0f\n", "M420 Z%.2f\n",            NULL,               NULL,                      NULL}, //ABL State + Z Fade
+  {"M218 T1 X%.2f\nM503\n", "M218 T1 Y%.2f\nM503\n", "M218 T1 Z%.2f\nM503\n", NULL, NULL}, //Offset Tools
 };
 
 const VAL_TYPE parameter_val_type[PARAMETERS_COUNT][STEPPER_COUNT] = {
@@ -196,10 +195,10 @@ void saveEepromSettings(void)
 void restoreEepromSettings(void)
 {
   if(infoMachineSettings.EEPROM == 1)
-    mustStoreScript("M501\nM503 S0\n");
+    mustStoreScript("M501\nM503\n");
 }
 void resetEepromSettings(void)
 {
   if(infoMachineSettings.EEPROM == 1)
-    mustStoreScript("M502\nM500\nM503 S0\n");
+    mustStoreScript("M502\nM500\nM503\n");
 }

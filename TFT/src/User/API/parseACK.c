@@ -499,13 +499,13 @@ void parseACK(void)
         if(ack_seen("Z")) setParameter(P_PROBE_OFFSET, Z_STEPPER, ack_value());
       }
     //parse and store linear advance values
-      else if(ack_seen("M900 K")){
+      else if(ack_seen("MM572 S")){
                           setParameter(P_LIN_ADV, 0, ack_value());
       }
-      else if(ack_seen("M900 T0 K")){
+      else if(ack_seen("M572 D0 S")){
                           setParameter(P_LIN_ADV, 0, ack_value());
       }
-      else if(ack_seen("M900 T1 K")){
+      else if(ack_seen("M572 D1 S")){
                           setParameter(P_LIN_ADV, 1, ack_value());
       }
     //parse and store stepper driver current values

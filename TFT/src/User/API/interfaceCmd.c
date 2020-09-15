@@ -752,8 +752,8 @@ void sendQueueCmd(void)
           if(cmd_seen('Y')) setParameter(P_PROBE_OFFSET, Y_AXIS, cmd_float());
           if(cmd_seen('Z')) setParameter(P_PROBE_OFFSET, Z_AXIS, cmd_float());
           break;
-        case 900: //M900 Linear advance
-          if (cmd_seen('K')) setParameter(P_LIN_ADV, 0, cmd_float());
+        case 572: //M572 Pressure advance
+          if (cmd_seen('S')) setParameter(P_LIN_ADV, 0, cmd_float());
           break;
         case 906: //M906 Stepper driver current
           if(cmd_seen('X')) setParameter(P_CURRENT, X_AXIS, cmd_value());
@@ -815,7 +815,7 @@ void sendQueueCmd(void)
         case 28: //G28
           coordinateSetKnown(true);
           babyStepReset();
-          storeCmd("M503 S0\n");
+          storeCmd("M503\n");
           break;
 
         case 29: //G29

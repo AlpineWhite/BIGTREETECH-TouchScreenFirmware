@@ -195,7 +195,7 @@ bool request_M24(int pos)
  **/
 bool request_M524(void)
 {
-  mustStoreCmd("M524\n");
+  mustStoreCmd("M0\n");
   return true;
 }
 /**
